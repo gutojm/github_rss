@@ -1,18 +1,14 @@
 defmodule GithubRSS.Repo.Migrations.AddReposTable do
   use Ecto.Migration
 
-  def up do
-    create table("repo") do
-      add :user,    :string, size: 40
-      add :repository, :string, size: 40
+  def change do
+    create table("repositories") do
+      add :user, :string, size: 40, null: false
+      add :repository, :string, size: 40, null: false
 
       timestamps()
     end
 
-    unique_index("repo", [:user, :repository])
-  end
-
-  def down do
-    drop table("repo")
+    create unique_index("repositories", [:user, :repository])
   end
 end
