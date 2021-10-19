@@ -45,10 +45,9 @@ defmodule GithubRSS.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       # job scheduler
-      {:quantum, "~> 3.0"},
+      {:oban, "~> 2.9"},
       # http client
       {:tesla, "~> 1.4"},
-      {:hackney, "~> 1.17"},
       # test support and code quality
       {:mox, "~> 1.0", only: [:dev, :test]},
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false}

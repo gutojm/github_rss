@@ -8,7 +8,7 @@ defmodule GithubRSSWeb.Router do
   scope "/api", GithubRSSWeb do
     pipe_through :api
 
-    post("/", RepositoryController, :create_repository)
+    post("/repository", RepositoryController, :create_repository)
   end
 
   # Enables LiveDashboard only for development

@@ -20,6 +20,9 @@ config :github_rss, GithubRSSWeb.Endpoint,
   secret_key_base: "ZzJSRbzvk58mBGcNaUaIU7vnl3Q97YEJnE+M8kolLrCsXf36+UNdF4ntI87Ul3/c",
   server: false
 
+config :github_rss, GithubRSS.Github, adapter: GithubRSS.GithubMock
+config :github_rss, GithubRSS.Webhook, adapter: GithubRSS.WebhookMock
+
 # In test we don't send emails.
 config :github_rss, GithubRSS.Mailer, adapter: Swoosh.Adapters.Test
 
@@ -28,3 +31,5 @@ config :logger, level: :warn
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :github_rss, Oban, queues: false, plugins: false

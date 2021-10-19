@@ -16,7 +16,6 @@ defmodule GithubRSSWeb do
   below. Instead, define any helper function in modules
   and import those modules here.
   """
-
   def controller do
     quote do
       use Phoenix.Controller, namespace: GithubRSSWeb
@@ -24,6 +23,8 @@ defmodule GithubRSSWeb do
       import Plug.Conn
       import GithubRSSWeb.Gettext
       alias GithubRSSWeb.Router.Helpers, as: Routes
+
+      action_fallback(GithubRSSWeb.FallbackController)
     end
   end
 

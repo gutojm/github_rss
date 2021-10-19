@@ -15,9 +15,10 @@ defmodule GithubRSS.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: GithubRSS.PubSub},
       # Start the Endpoint (http/https)
-      GithubRSSWeb.Endpoint
+      GithubRSSWeb.Endpoint,
       # Start a worker by calling: GithubRSS.Worker.start_link(arg)
       # {GithubRSS.Worker, arg}
+      {Oban, oban_config()}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -32,5 +33,10 @@ defmodule GithubRSS.Application do
   def config_change(changed, _new, removed) do
     GithubRSSWeb.Endpoint.config_change(changed, removed)
     :ok
+  end
+
+  # Conditionally disable queues or plugins here.
+  defp oban_config do
+    Application.fetch_env!(:github_rss, Oban)
   end
 end

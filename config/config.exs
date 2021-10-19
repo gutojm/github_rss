@@ -27,6 +27,9 @@ config :github_rss, GithubRSSWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :github_rss, GithubRSS.Mailer, adapter: Swoosh.Adapters.Local
 
+config :github_rss, GithubRSS.Github, adapter: GithubRSS.Github.Api
+config :github_rss, GithubRSS.Webhook, adapter: GithubRSS.Webhook.Api
+
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 
@@ -37,6 +40,11 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :github_rss, Oban,
+  repo: GithubRSS.Repo,
+  plugins: [Oban.Plugins.Pruner],
+  queues: [default: 10]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
