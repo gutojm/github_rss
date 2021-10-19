@@ -1,14 +1,21 @@
-defmodule Repositories.Repository do
+defmodule GithubRSS.Repositories.Repository do
+  @moduledoc """
+  Repository Schema
+  """
   use Ecto.Schema
   import Ecto.Changeset
 
-  @fields [:user, :repository]
+  @type t :: %__MODULE__{}
+
+  @fields [:user, :repository, :issues, :contributors]
 
   schema "repositories" do
     field :user, :string
     field :repository, :string
-    has_many :issues, Repositories.Issue
-    has_many :contributors, Repositories.Contributor
+    field :issues, {:array, :map}
+    field :contributors, {:array, :map}
+
+    timestamps()
   end
 
   def changeset(struct, params \\ %{}) do

@@ -5,6 +5,8 @@ defmodule GithubRSS.Repo.Migrations.AddReposTable do
     create table("repositories") do
       add :user, :string, size: 40, null: false
       add :repository, :string, size: 40, null: false
+      add :issues, {:array, :jsonb}
+      add :contributors, {:array, :jsonb}
 
       timestamps()
     end
